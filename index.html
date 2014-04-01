@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
+<script src="app.js"></script>
+<meta charset=utf-8 />
+<title>JS Bin</title>
+</head>
+<body ng-app>
+  <div ng-controller="ParentCtrl">
+    <p>{{foo}}</p>
+    <div ng-controller="ChildCtrl">
+      <button ng-click="onButtonClick()">{{buttonTitle}}</button>
+    </div>
+  </div>
+</body>
+</html>
