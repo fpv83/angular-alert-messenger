@@ -1,0 +1,18 @@
+{
+    "spaceUnits": 2,
+    "closeTags": {
+        "whenOpening": false,
+        "whenClosing": true
+    },
+    "path": {
+        "**.js": {
+            "insertHintOnTab": true,
+            "scrollPastEnd": true,
+            "useTabChar": false,
+            "spaceUnits": 2,
+            "tabSize": 1,
+            "linting.collapsed": true,
+            "brackets-git.panelEnabled": false
+        }
+    }
+}
