@@ -1,17 +1,23 @@
 <!DOCTYPE html>
 <html>
-<head>
-<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
-<script src="app.js"></script>
-<meta charset=utf-8 />
-<title>JS Bin</title>
-</head>
-<body ng-app>
-  <div ng-controller="ParentCtrl">
-    <p>{{foo}}</p>
-    <div ng-controller="ChildCtrl">
-      <button ng-click="onButtonClick()">{{buttonTitle}}</button>
+  <head>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
+    <script src="app.js"></script>
+    <meta charset=utf-8 />
+    <title>angular-alert-messanger</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+  </head>
+  <body data-ng-app="webapp">
+    <div data-ng-controller="test">
+      <div data-ng-controller="ParentCtrl">
+        <input type="text" data-ng-model="message.text">
+        closable<input type="checkbox" data-ng-model="message.closable">
+        type <input type="text" data-ng-model="message.kind">
+        time to show <input type="number" data-ng-model="message.expires">
+        <p>{{message}}</p>
+        <button class="btn btn-default" data-ng-click="onButtonClick()">{{buttonTitle}}</button>
+      </div>
     </div>
-  </div>
-</body>
+    <div data-alerts></div>
+  </body>
 </html>
