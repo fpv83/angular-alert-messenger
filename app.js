@@ -1,13 +1,3 @@
-function generateUUID() {
-  var d = new Date().getTime();
-  var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-    var r = (d + Math.random()*16)%16 | 0;
-    d = Math.floor(d/16);
-    return (c=='x' ? r : (r&0x7|0x8)).toString(16);
-  });
-  return uuid;
-};
-
 angular.module('webapp', []);
 
 angular.module('webapp').controller('test', ['$scope',  function test($scope) {
@@ -27,7 +17,7 @@ angular.module('webapp').controller('ParentCtrl', ['$scope',  function ParentCtr
   $scope.onButtonClick = function () {
     this.$emit("message", {
       message : {
-        'id': generateUUID(),
+        'id': $scope.generateId(),
         'type': $scope.message.type,
         'closeable': $scope.message.closeable,
         'text': $scope.message.text,
@@ -63,6 +53,16 @@ angular.module('webapp').controller('AnotherCtrl', ['$scope', '$rootScope', func
     }
   };
 
+  $scope.generateId = function generateUUID() {
+    var d = new Date().getTime();
+    var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+      var r = (d + Math.random()*16)%16 | 0;
+      d = Math.floor(d/16);
+      return (c=='x' ? r : (r&0x7|0x8)).toString(16);
+    });
+    return uuid;
+  };
+
 }]);
 
 angular.module('webapp').directive('alerts', function () {
@@ -70,7 +70,8 @@ angular.module('webapp').directive('alerts', function () {
   return {
     restrict: 'EA',
     controller: 'AnotherCtrl',
-    template: '<div class="alert alert-{{item.type}}" data-expires="{{item.expires}}"' +
+    template:
+      '<div class="alert alert-{{item.type}}" data-expires="{{item.expires}}"' +
            'ng-repeat="item in messages"' +
            'ng-class="{\'alert-dismissable\': \'item.closeable || true\'}"' +
            'role="alert">' +
