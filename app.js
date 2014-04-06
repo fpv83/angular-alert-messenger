@@ -1,3 +1,12 @@
+function generateUUID() {
+  var d = new Date().getTime();
+  var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+    var r = (d + Math.random()*16)%16 | 0;
+    d = Math.floor(d/16);
+    return (c=='x' ? r : (r&0x7|0x8)).toString(16);
+  });
+  return uuid;
+};
 
 angular.module('webapp', []);
 
@@ -9,7 +18,7 @@ angular.module('webapp').controller('ParentCtrl', ['$scope',  function ParentCtr
   'use strict';
   $scope.message = {
     'text': 'Hello',
-    'closable': true,
+    'closeable': true,
     'type': 'danger',
     'expires': 1000
   };
@@ -18,8 +27,9 @@ angular.module('webapp').controller('ParentCtrl', ['$scope',  function ParentCtr
   $scope.onButtonClick = function () {
     this.$emit("message", {
       message : {
+        'id': generateUUID(),
         'type': $scope.message.type,
-        'closable': $scope.message.closable,
+        'closeable': $scope.message.closeable,
         'text': $scope.message.text,
         'expires': $scope.message.expires
       }
@@ -34,11 +44,9 @@ angular.module('webapp').controller('AnotherCtrl', ['$scope', '$rootScope', func
 
   $rootScope.$on("message", function (event, data) {
     messages.splice(0, 0, data.message);
-    console.log(messages)
     $scope.messages = messages;
-    console.log($scope.messages);
     if (data.message.expires) {
-      setTimeout(function() {$scope.expire(data.message.$$hashKey)}, data.message.expires);
+      setTimeout(function() {$scope.expire(data.message.id)}, data.message.expires);
     }
   });
 
@@ -48,6 +56,11 @@ angular.module('webapp').controller('AnotherCtrl', ['$scope', '$rootScope', func
 
   $scope.expire = function expiremessage(messageId) {
     console.log('expire', messageId);
+    for (var i = 0; i < $scope.messages.length; i++) {
+      if  ($scope.messages[i].id === messageId) {
+        $scope.$apply($scope.close(i));
+      }
+    }
   };
 
 }]);
@@ -59,10 +72,10 @@ angular.module('webapp').directive('alerts', function () {
     controller: 'AnotherCtrl',
     template: '<div class="alert alert-{{item.type}}" data-expires="{{item.expires}}"' +
            'ng-repeat="item in messages"' +
-           'ng-class="{\'alert-dismissable\': \'item.closable || true\'}"' +
+           'ng-class="{\'alert-dismissable\': \'item.closeable || true\'}"' +
            'role="alert">' +
-           '{{item.text}}' +
-        '<button ng-if="item.closable" type="button" class="close" ng-click="close($index)">' +
+           '{{item.text}}' + ' ' + '{{item.id}}' +
+        '<button ng-if="item.closeable" type="button" class="close" ng-click="close($index)">' +
           '<span aria-hidden="true">&times;</span>' +
           '<span class="sr-only">Close</span>' +
         '</button>' +
