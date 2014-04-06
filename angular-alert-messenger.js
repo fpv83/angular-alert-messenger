@@ -47,11 +47,11 @@ angular.module('alert.messenger').directive('alerts', function () {
            'ng-repeat="item in messages"' +
            'ng-class="{\'alert-dismissable\': \'item.closeable || true\'}"' +
            'role="alert">' +
-           '{{item.text}}' + ' ' + '{{item.id}}' +
         '<button ng-if="item.closeable" type="button" class="close" ng-click="close($index)">' +
           '<span aria-hidden="true">&times;</span>' +
           '<span class="sr-only">Close</span>' +
         '</button>' +
+        '{{item.text}}' + ' ' + '{{item.id}}' +
       '</div>',
     replace: true
   };
