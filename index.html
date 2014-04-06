@@ -3,21 +3,45 @@
   <head>
     <meta charset=utf-8 />
     <title>angular-alert-messanger</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="alert messanger with angular.js optimized for twitter bootstrap">
+    <meta name="author" content="fpv83">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
     <script src="app.js"></script>
+    <script src="angular-alert-messenger.js"></script>
   </head>
   <body data-ng-app="webapp">
-    <div data-ng-controller="test">
-      <div data-ng-controller="ParentCtrl">
-        <input type="text" data-ng-model="message.text">
-        closeable<input type="checkbox" data-ng-model="message.closeable">
-        type <input type="text" data-ng-model="message.type">
-        time to show <input type="number" data-ng-model="message.expires">
-        <p>{{message}}</p>
-        <button class="btn btn-default" data-ng-click="onButtonClick()">{{buttonTitle}}</button>
+    <div class="container">
+
+      <!-- Main component for a primary marketing message or call to action -->
+      <div class="jumbotron">
+        <h1>Angular Alert Messenger</h1>
+        <p>trigger and display bootstrap alerts with the angular framework</p>
+        <p>
+          <a class="btn btn-lg btn-primary" href="../../components/#navbar" role="button">Code on Github &raquo;</a>
+        </p>
       </div>
-    </div>
-    <div data-alerts></div>
+      <div class="row">
+        <div class="col-md-8">
+          <div data-ng-controller="test">
+            <div data-ng-controller="ParentCtrl">
+              <input type="text" data-ng-model="message.text">
+              closeable<input type="checkbox" data-ng-model="message.closeable">
+              type <input type="text" data-ng-model="message.type">
+              time to show <input type="number" data-ng-model="message.expires">
+              <p>{{message}}</p>
+              <button class="btn btn-default" data-ng-click="onButtonClick()">{{buttonTitle}}</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div data-alerts></div>
+        </div>
+      </div>
+
+
+    </div> <!-- /container -->
   </body>
 </html>
