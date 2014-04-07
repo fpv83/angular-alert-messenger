@@ -3,12 +3,17 @@
   text-shadow: 3px 3px 4px #333;
   background: repeating-radial-gradient(
     circle,
+/*
     #727272,
     #727272 10px,
     #000 10px,
     #4e4e4e 30px
-  );
-  /*background: repeating-radial-gradient(circle, #CE0010, #CE0010 10px, #FF9D00 10px, #FF9D00 30px) repeat scroll 0 0 rgba(0, 0, 0, 0);*/
+*/
+    #CE0010,
+    #CE0010 10px,
+    #FF9D00 10px,
+    #FF9D00 30px
+  ) repeat scroll 0 0 rgba(0, 0, 0, 0);
   -webkit-box-shadow: 0px 1px 6px 2px #737373;
      -moz-box-shadow: 0px 1px 6px 2px #737373;
           box-shadow: 0px 1px 6px 2px #737373;

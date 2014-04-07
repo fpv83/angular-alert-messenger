@@ -32,10 +32,10 @@
             How to use?
           </h2>
           <p>
-            The Alert Messenger can be used with angulars <code>$emit</code> or <code>$broadcast</code>.
+            The Alert Messenger uses angulars <code>$emit</code> or <code>$broadcast</code>.
           </p>
           <p>
-            To use this Module you have to load the "angular-alert-messenger.js" in your index.html
+            To use this Module you have to load "angular-alert-messenger.js" in your index.html
             and declare it as a dependency of your angular application, like:
           </p>
           <pre>angular.module('your.application',
@@ -44,16 +44,14 @@
             Then place <code>&lt;alerts&gt;&lt;/alerts&gt;</code> wherever you want the messages to be shown.
           </p>
           <p>
-            The following code is used for this example.
+            The following code is used in the example on this page.
           </p>
         <pre>$scope.onButtonClick = function () {
   this.$emit("message", {
-    message : {
-      'type': $scope.message.type,
-      'closeable': $scope.message.closeable,
-      'text': $scope.message.text,
-      'expires': $scope.message.expires
-    }
+    'type': $scope.message.type,
+    'closeable': $scope.message.closeable,
+    'text': $scope.message.text,
+    'expires': $scope.message.expires
   });
 };</pre>
 

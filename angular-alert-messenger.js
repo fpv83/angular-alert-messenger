@@ -32,19 +32,19 @@ angular.module('alert.messenger').controller('alertCTRL', ['$scope', '$rootScope
   $scope.message = {};
 
   $rootScope.$on("message", function (event, data) {
-    data.message.id = $scope.generateId();
-    messages.splice(0, 0, data.message);
+    data.id = $scope.generateId();
+    messages.splice(0, 0, data);
     $scope.messages = messages;
-    if (data.message.expires) {
-      setTimeout(function () {$scope.expire(data.message.id); }, data.message.expires);
+    if (data.expires) {
+      setTimeout(function () {$scope.expire(data.id); }, data.expires);
     }
   });
 
   $scope.$on("scopedmessage", function (event, data) {
     messages.splice(0, 0, data.message);
     $scope.messages = messages;
-    if (data.message.expires) {
-      setTimeout(function () {$scope.expire(data.message.id); }, data.message.expires);
+    if (data.expires) {
+      setTimeout(function () {$scope.expire(data.id); }, data.expires);
     }
   });
 

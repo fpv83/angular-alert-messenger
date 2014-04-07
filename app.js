@@ -20,12 +20,10 @@ angular.module('webapp').controller('ParentCtrl', ['$scope',  function ParentCtr
   $scope.buttonTitle = 'try it !';
   $scope.onButtonClick = function () {
     this.$emit("message", {
-      message : {
-        'type': $scope.message.type,
-        'closeable': $scope.message.closeable,
-        'text': $scope.message.text,
-        'expires': $scope.message.expires
-      }
+      'type': $scope.message.type,
+      'closeable': $scope.message.closeable,
+      'text': $scope.message.text,
+      'expires': $scope.message.expires
     });
   };
 }]);
