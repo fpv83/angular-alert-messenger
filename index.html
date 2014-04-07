@@ -8,14 +8,13 @@
     <meta name="description" content="alert messanger with angular.js optimized for twitter bootstrap">
     <meta name="author" content="fpv83">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="custom.css">
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
     <script src="app.js"></script>
     <script src="angular-alert-messenger.js"></script>
   </head>
   <body data-ng-app="webapp">
 
-
-      <!-- Main component for a primary marketing message or call to action -->
     <div class="jumbotron">
       <div class="container">
         <h1>Angular Alert Messenger</h1>
@@ -25,26 +24,58 @@
         </p>
       </div>
     </div>
+
     <div class="container">
       <div class="row">
+
         <div class="col-md-8">
-          <div data-ng-controller="test">
-            <div data-ng-controller="ParentCtrl">
-              <input type="text" data-ng-model="message.text">
-              closeable<input type="checkbox" data-ng-model="message.closeable">
-              type <input type="text" data-ng-model="message.type">
-              time to show <input type="number" data-ng-model="message.expires">
-              <p>{{message}}</p>
-              <button class="btn btn-default" data-ng-click="onButtonClick()">{{buttonTitle}}</button>
+          <form data-ng-controller="ParentCtrl" name="alertform" class="form-horizontal" role="form">
+            <div class="form-group">
+              <label class="col-sm-2 control-label" for="alertText">Alert Text:</label>
+              <div class="col-sm-10">
+                <textarea class="form-control" id="alertText" data-ng-model="message.text" rows="3"></textarea>
+              </div>
             </div>
-          </div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label" for="alertCloseable"> Closeable:</label>
+              <div class="col-sm-10">
+                <input type="checkbox" id="alertCloseable" data-ng-model="message.closeable">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-2" for="alertType"> type:</label>
+              <div class="col-sm-10">
+                <select class="form-control" id="alertType" ng-model="message.type" ng-options="c for c in infotypes"></select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-2" for="messageExpires"> Time to show:</label>
+              <div class="col-sm-10">
+                <input type="number" class="form-control" id="messageExpires" data-ng-model="message.expires">
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="control-label col-sm-2">
+                <button class="btn btn-primary" data-ng-click="onButtonClick()">{{buttonTitle}}</button>
+              </div>
+              <div class="col-sm-10">
+                <code>{{message}}</code>
+              </div>
+            </div>
+          </form>
         </div>
+
         <div class="col-md-4">
           <div data-alerts></div>
         </div>
+
       </div>
-
-
     </div> <!-- /container -->
+    <div id="footer">
+      <div class="container">
+        <p class="text-muted">Made by fpv83</p>
+      </div>
+    </div>
+
   </body>
 </html>

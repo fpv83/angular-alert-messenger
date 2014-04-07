@@ -13,6 +13,14 @@ angular.module('alert.messenger').controller('alertCTRL', ['$scope', '$rootScope
     }
   });
 
+  $scope.$on("scopedmessage", function (event, data) {
+    messages.splice(0, 0, data.message);
+    $scope.messages = messages;
+    if (data.message.expires) {
+      setTimeout(function () {$scope.expire(data.message.id); }, data.message.expires);
+    }
+  });
+
   $scope.close = function close(itemIndex) {
     $scope.messages.splice(itemIndex, 1);
   };
@@ -51,7 +59,7 @@ angular.module('alert.messenger').directive('alerts', function () {
           '<span aria-hidden="true">&times;</span>' +
           '<span class="sr-only">Close</span>' +
         '</button>' +
-        '{{item.text}}' + ' ' + '{{item.id}}' +
+        '{{item.text}}' +
       '</div>',
     replace: true
   };

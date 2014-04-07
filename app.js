@@ -1,16 +1,20 @@
 angular.module('webapp', ['alert.messenger']);
 
-angular.module('webapp').controller('test', ['$scope',  function test($scope) {
-  'use strict';
-}]);
-
 angular.module('webapp').controller('ParentCtrl', ['$scope',  function ParentCtrl($scope) {
   'use strict';
+
+  $scope.infotypes = [
+    'danger',
+    'info',
+    'warning',
+    'success'
+  ];
+
   $scope.message = {
     'text': 'Hello',
     'closeable': true,
     'type': 'danger',
-    'expires': 1000
+    'expires': 5000
   };
 
   $scope.buttonTitle = 'try';
