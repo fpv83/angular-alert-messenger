@@ -17,11 +17,10 @@ angular.module('webapp').controller('ParentCtrl', ['$scope',  function ParentCtr
     'expires': 5000
   };
 
-  $scope.buttonTitle = 'try';
+  $scope.buttonTitle = 'try it !';
   $scope.onButtonClick = function () {
     this.$emit("message", {
       message : {
-        'id': $scope.generateId(),
         'type': $scope.message.type,
         'closeable': $scope.message.closeable,
         'text': $scope.message.text,

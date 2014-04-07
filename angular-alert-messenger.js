@@ -32,6 +32,7 @@ angular.module('alert.messenger').controller('alertCTRL', ['$scope', '$rootScope
   $scope.message = {};
 
   $rootScope.$on("message", function (event, data) {
+    data.message.id = $scope.generateId();
     messages.splice(0, 0, data.message);
     $scope.messages = messages;
     if (data.message.expires) {

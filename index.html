@@ -27,39 +27,76 @@
 
     <div class="container">
       <div class="row">
+        <div class="col-md-4">
+          <h2>
+            How to use?
+          </h2>
+          <p>
+            The Alert Messenger can be used with angulars <code>$emit</code> or <code>$broadcast</code>.
+          </p>
+          <p>
+            To use this Module you have to load the "angular-alert-messenger.js" in your index.html
+            and declare it as a dependency of your angular application, like:
+          </p>
+          <pre>angular.module('your.application',
+  ['alert.messenger']);</pre>
+          <p>
+            Then place <code>&lt;alerts&gt;&lt;/alerts&gt;</code> wherever you want the messages to be shown.
+          </p>
+          <p>
+            The following code is used for this example.
+          </p>
+        <pre>$scope.onButtonClick = function () {
+  this.$emit("message", {
+    message : {
+      'type': $scope.message.type,
+      'closeable': $scope.message.closeable,
+      'text': $scope.message.text,
+      'expires': $scope.message.expires
+    }
+  });
+};</pre>
 
-        <div class="col-md-8">
+        </div>
+        <div class="col-md-4 well">
           <form data-ng-controller="ParentCtrl" name="alertform" class="form-horizontal" role="form">
             <div class="form-group">
-              <label class="col-sm-2 control-label" for="alertText">Alert Text:</label>
-              <div class="col-sm-10">
-                <textarea class="form-control" id="alertText" data-ng-model="message.text" rows="3"></textarea>
+              <label class="col-sm-4 control-label" for="alertText">Alert Text:</label>
+              <div class="col-sm-8">
+                <textarea class="form-control" id="alertText" data-ng-model="message.text" rows="2"></textarea>
               </div>
             </div>
             <div class="form-group">
-              <label class="col-sm-2 control-label" for="alertCloseable"> Closeable:</label>
-              <div class="col-sm-10">
+              <label class="col-sm-4 control-label" for="alertCloseable"> Closeable:</label>
+              <div class="col-sm-8">
                 <input type="checkbox" id="alertCloseable" data-ng-model="message.closeable">
               </div>
             </div>
             <div class="form-group">
-              <label class="control-label col-sm-2" for="alertType"> type:</label>
-              <div class="col-sm-10">
-                <select class="form-control" id="alertType" ng-model="message.type" ng-options="c for c in infotypes"></select>
+              <label class="control-label col-sm-4" for="alertType"> type:</label>
+              <div class="col-sm-8">
+                <select class="form-control" id="alertType" data-ng-model="message.type" data-ng-options="c for c in infotypes"></select>
               </div>
             </div>
             <div class="form-group">
-              <label class="control-label col-sm-2" for="messageExpires"> Time to show:</label>
-              <div class="col-sm-10">
+              <label class="control-label col-sm-4" for="messageExpires"> Time to show:</label>
+              <div class="col-sm-8">
                 <input type="number" class="form-control" id="messageExpires" data-ng-model="message.expires">
               </div>
             </div>
             <div class="form-group">
-              <div class="control-label col-sm-2">
+              <div class="control-label col-sm-4">
                 <button class="btn btn-primary" data-ng-click="onButtonClick()">{{buttonTitle}}</button>
               </div>
-              <div class="col-sm-10">
-                <code>{{message}}</code>
+              <div class="col-sm-8">
+
+<pre>{
+  'text': '{{message.text}}',
+  'closeable': {{message.closeable}},
+  'type': '{{message.type}}',
+  'expires': {{message.expires}}
+}</pre>
+
               </div>
             </div>
           </form>
@@ -70,12 +107,13 @@
         </div>
 
       </div>
-    </div> <!-- /container -->
-    <div id="footer">
-      <div class="container">
-        <p class="text-muted">Made by fpv83</p>
+      <hr />
+      <div class="footer">
+        <p>© fpv84 2014</p>
       </div>
-    </div>
+
+    </div> <!-- /container -->
+
 
   </body>
 </html>
