@@ -32,7 +32,7 @@
             "spaceUnits": 2,
             "tabSize": 1,
             "linting.collapsed": true,
-            "brackets-git.panelEnabled": false,
+            "brackets-git.panelEnabled": true,
             "wordWrap": false
         }
     }
