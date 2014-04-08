@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="custom.css">
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
     <script src="app.js"></script>
-    <script src="angular-alert-messenger.js"></script>
+    <script src="dist/angular-alert-messenger.js"></script>
   </head>
   <body data-ng-app="webapp">
 
@@ -56,8 +56,8 @@
 };</pre>
 
         </div>
-        <div class="col-md-4 well">
-          <form data-ng-controller="ParentCtrl" name="alertform" class="form-horizontal" role="form">
+        <div class="col-md-4">
+          <form data-ng-controller="ParentCtrl" name="alertform" class="well form-horizontal" role="form">
             <div class="form-group">
               <label class="col-sm-4 control-label" for="alertText">Alert Text:</label>
               <div class="col-sm-8">
@@ -71,13 +71,13 @@
               </div>
             </div>
             <div class="form-group">
-              <label class="control-label col-sm-4" for="alertType"> type:</label>
+              <label class="control-label col-sm-4" for="alertType"> Type:</label>
               <div class="col-sm-8">
                 <select class="form-control" id="alertType" data-ng-model="message.type" data-ng-options="c for c in infotypes"></select>
               </div>
             </div>
             <div class="form-group">
-              <label class="control-label col-sm-4" for="messageExpires"> Time to show:</label>
+              <label class="control-label col-sm-4" for="messageExpires"> Expires (ms):</label>
               <div class="col-sm-8">
                 <input type="number" class="form-control" id="messageExpires" data-ng-model="message.expires">
               </div>
@@ -87,17 +87,13 @@
                 <button class="btn btn-primary" data-ng-click="onButtonClick()">{{buttonTitle}}</button>
               </div>
               <div class="col-sm-8">
-
-<pre>{
-  'text': '{{message.text}}',
-  'closeable': {{message.closeable}},
-  'type': '{{message.type}}',
-  'expires': {{message.expires}}
-}</pre>
-
+              <pre>{{message}}</pre>
               </div>
             </div>
           </form>
+          <p>
+            Leave the 'expires-field' empty, if you dont want to auto-expirer messages.
+          </p>
         </div>
 
         <div class="col-md-4">
