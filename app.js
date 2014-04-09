@@ -3,6 +3,35 @@ angular.module('webapp', ['alert.messenger']);
 angular.module('webapp').controller('ParentCtrl', ['$scope',  function ParentCtrl($scope) {
   'use strict';
 
+  $scope.initial = function () {
+    this.$emit("message", {
+      'type': 'success',
+      'closeable': true,
+      'text': 'success',
+      'expires': null
+    });
+    this.$emit("message", {
+      'type': 'info',
+      'closeable': true,
+      'text': 'info',
+      'expires': null
+    });
+    this.$emit("message", {
+      'type': 'danger',
+      'closeable': true,
+      'text': 'danger',
+      'expires': null
+    });
+    this.$emit("message", {
+      'type': 'warning',
+      'closeable': true,
+      'text': 'warning',
+      'expires': null
+    });
+  };
+
+  $scope.initial();
+
   $scope.infotypes = [
     'danger',
     'info',
