@@ -31,22 +31,25 @@ angular.module('alert.messenger').controller('alertCTRL', ['$scope', '$rootScope
   var messages = [];
   $scope.message = {};
 
-  $rootScope.$on("message", function (event, data) {
+  $scope.add = function () {
+    if ($scope.scoped) {
+      $scope.$on('scopedmessage', function(event, data) {$scope.add(event, data)});
+    } else {
+      $rootScope.$on('message', function(event, data) {$scope.add(event, data)});
+    };
+  };
+  $scope.add()
+
+
+
+  $scope.add = function (event, data) {
     data.id = $scope.generateId();
     messages.splice(0, 0, data);
     $scope.messages = messages;
     if (data.expires) {
       setTimeout(function () {$scope.expire(data.id); }, data.expires);
     }
-  });
-
-  $scope.$on("scopedmessage", function (event, data) {
-    messages.splice(0, 0, data.message);
-    $scope.messages = messages;
-    if (data.expires) {
-      setTimeout(function () {$scope.expire(data.id); }, data.expires);
-    }
-  });
+  };
 
   $scope.close = function close(itemIndex) {
     $scope.messages.splice(itemIndex, 1);
@@ -77,6 +80,7 @@ angular.module('alert.messenger').directive('alerts', function () {
   return {
     restrict: 'EA',
     controller: 'alertCTRL',
+    scope: {scoped: '=scoped'},
     template:
       '<div class="alert alert-{{item.type}}" data-expires="{{item.expires}}"' +
            'ng-repeat="item in messages"' +
