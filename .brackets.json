@@ -13,7 +13,8 @@
             "tabSize": 1,
             "linting.collapsed": true,
             "brackets-git.panelEnabled": true,
-            "wordWrap": false
+            "wordWrap": false,
+            "brackets-git.defaultRemotes./Users/fabianvenetz/angular-alert-broadcast/": "origin"
         },
         "**.html": {
             "insertHintOnTab": true,
