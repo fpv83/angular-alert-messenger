@@ -31,14 +31,14 @@ angular.module('alert.messenger').controller('alertCTRL', ['$scope', '$rootScope
   var messages = [];
   $scope.message = {};
 
-  $scope.add = function () {
+  $scope.displayAlerts = function () {
     if ($scope.scoped) {
       $scope.$on('scopedmessage', function(event, data) {$scope.add(event, data)});
     } else {
       $rootScope.$on('message', function(event, data) {$scope.add(event, data)});
     };
   };
-  $scope.add()
+  $scope.displayAlerts()
 
 
 
